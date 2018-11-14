@@ -1,32 +1,41 @@
 import { Component } from 'react';
 import { Modal, Button } from 'antd';
 
+import Form from './form';
+
 export default class Add extends Component {
   state = {
     loading: false,
-    data: {}
+    interfaceTypes: '',
+    dataPath: '',
+    interfaceDataTypes: []
   }
-  handleOk = () => {}
-  handleCancel = () => {}
-  showModal = () => {
-    const { dispatch } = this.props;
-    dispatch({ type: 'index/setAddVisible', visible: true })
+  handleOk = () => {
+    const { onOk } = this.props;
+    onOk();
   }
+  handleCancel = () => {
+    const { onCancel } = this.props;
+    onCancel();
+  }
+
+  changeData = () => {}
 
   render() {
     const { visible, showModal } = this.props;
-    const { loading } = this.state;
-    console.log('this.props', this.props)
+    const { loading, ...res } = this.state;
     return (
       <div>
         <Button type="primary" onClick={showModal}>
-          新增数据
+          新增接口
         </Button>
-        <Modal title="新增数据" visible={visible} onOk={this.handleOk}
+        <Modal title="新增接口" visible={visible} onOk={this.handleOk}
+          okText="确认"
+          cancelText="取消"
           confirmLoading={loading}
           onCancel={this.handleCancel}
         >
-          <p>sss</p>
+          <Form {...res} changeData={this.changeData} />
         </Modal>
       </div>
     );

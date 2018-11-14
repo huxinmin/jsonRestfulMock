@@ -1,13 +1,25 @@
-import { connect } from 'dva';
-
 import styles from './index.css';
 import Add from './add';
 
-const IndexComponent = ({db, addVisible, dispatch}) => {
-  console.log('addVisible', addVisible, 'db', db)
+export default ({db, addVisible, dispatch}) => {
+  function showModal() {
+    dispatch({ type: 'index/setAddVisible', visible: true })
+  }
+  function onModalOk() {
+    dispatch({ type: 'index/setAddVisible', visible: false })
+  }
+  function onModalCancel() {
+    dispatch({ type: 'index/setAddVisible', visible: false })
+  }
+  const modalProps = {
+    visible: addVisible,
+    showModal: showModal,
+    onCancel: onModalOk,
+    onOk: onModalCancel,
+  }
   return (
     <div className={styles.container}>
-      <Add visible={addVisible} dispatch={dispatch} showModal={() => dispatch({ type: 'index/setAddVisible', visible: true })}/>
+      <Add {...modalProps}/>
       <div className={styles.api}>
         <h5>当前可用接口</h5>
         { Object.keys(db).map((item, index) =>
@@ -40,12 +52,3 @@ const IndexComponent = ({db, addVisible, dispatch}) => {
     </div>
   )
 }
-
-function mapStateToProps({ index: { db, addVisible } }) {
-  return {
-    db,
-    addVisible,
-  };
-}
-
-export default connect(mapStateToProps)(IndexComponent);

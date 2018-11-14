@@ -2,6 +2,7 @@ import * as indexService from '../services';
 
 export default {
   namespace: 'index',
+  // state: 0,
   state: {
     db: {},
     addVisible: false
@@ -10,11 +11,8 @@ export default {
     setDb(state, { data }) {
       return Object.assign(state, { db: data })
     },
-    // dva中不知道为什么在components中dispatch的action虽然已经触发了reducer却不会更新页面
-    // 需要去参考umi的例子with-dva
     setAddVisible(state, { visible }) {
-      console.log('reducers setAddVisible')
-      return Object.assign(state, { addVisible: visible })
+      return { ...state, addVisible: visible }
     }
   },
   effects: {
@@ -25,9 +23,6 @@ export default {
         data
       });
     },
-    // *setAddVisible({visible}, {call, put}) {
-    //   yield put({type: 'setAdd', visible})
-    // }
   },
   subscriptions: {
     setup({ dispatch, history }) {
