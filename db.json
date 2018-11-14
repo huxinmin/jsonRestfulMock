@@ -1,5 +1,5 @@
 {
-  "tests": [
+  "posts": [
     {
       "id": 1,
       "title": "json-server",
@@ -15,5 +15,12 @@
   ],
   "profile": {
     "name": "typicode"
-  }
+  },
+  "tests": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ]
 }

@@ -8,27 +8,18 @@ const addRoute = require('./server/router/addRoute');
 server.use(middlewares);
 
 const reloadDB = (req, res, next) => {
-  if (req.method === 'GET' && req.url.endsWith('/reloadDB')) {
-    removeRoute(server); // 将router中use的route删掉原数据的route并将新增的route位置替换到那里
-    const dbData = { 
-    	"tests": [
-    		{ "id": 1, "title": "json-server", "author": "typicode" }
-  		],
-  		"comments": [
-    		{ "id": 1, "body": "some comment", "postId": 1 }
-  		],
-  		"profile": { "name": "typicode" }
-		}
-		const db = router.db
-    db.setState(dbData);
-    db.write();
-    addRoute(db, router);
-    res.sendStatus(201);
-  } else {
-    next();
-  }
+  removeRoute(server); // 将router中use的route删掉原数据的route并将新增的route位置替换到那里
+  const addData = {
+    'tests': [{ "id": 1, "title": "json-server", "author": "typicode" }]
+	}
+	const db = router.db;
+  const dbData = Object.assign({}, db.getState(), addData);
+  db.setState(dbData);
+  addRoute(db, router);
+  db.write();
+  res.sendStatus(201);
 };
-server.use(reloadDB);
+server.get('/reloadDB', reloadDB);
 
 server.use(router);
 
