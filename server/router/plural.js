@@ -159,7 +159,9 @@ module.exports = (db, name, opts) => {
     }
 
     // Slice result
+    let XTotalCount = 1;
     if (_end || _limit || _page) {
+      XTotalCount = chain.size();
       res.setHeader('X-Total-Count', chain.size())
       res.setHeader(
         'Access-Control-Expose-Headers',
@@ -220,8 +222,12 @@ module.exports = (db, name, opts) => {
       embed(element, _embed)
       expand(element, _expand)
     })
-
-    res.locals.data = chain.value()
+    if (_end || _limit || _page) {
+      // 我的修改，为了把分页的时候数据变成 { results:{}, size:1 }这样的
+      res.locals.data = { results: chain.value(), total: XTotalCount }
+    } else {
+      res.locals.data = chain.value()
+    }
     next()
   }
 

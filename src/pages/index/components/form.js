@@ -31,7 +31,7 @@ export default (props) => {
 				</Select>
 			</div>
 			<div style={{ marginBottom: '20px' }}>
-				<h5>接口路径名</h5>
+				<h5>接口路径名(不需要加斜杠)</h5>
 				<Input value={itfDataPath} placeholder="接口路径名" onChange={handleInput}/>
 			</div>
 			<div style={{ marginBottom: '20px' }}>

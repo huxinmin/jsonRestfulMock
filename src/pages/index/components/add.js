@@ -59,8 +59,8 @@ export default class Add extends Component {
     const { visible, showModal } = this.props;
     const { loading, ...res } = this.state;
     return (
-      <div>
-        <Button type="primary" onClick={showModal}>
+      <div style={{ textAlign: 'center', marginTop: '20px' }}>
+        <Button type="primary" onClick={showModal} size='large'>
           新增接口
         </Button>
         <Modal title="新增接口" visible={visible} onOk={this.handleOk}
