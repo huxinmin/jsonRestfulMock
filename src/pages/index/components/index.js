@@ -3,19 +3,20 @@ import Add from './add';
 
 export default ({db, addVisible, dispatch}) => {
   function showModal() {
-    dispatch({ type: 'index/setAddVisible', visible: true })
+    dispatch({ type: 'index/setAddVisible', visible: true });
   }
   function onModalOk() {
-    dispatch({ type: 'index/setAddVisible', visible: false })
+    dispatch({ type: 'index/setAddVisible', visible: false });
+    dispatch({ type: 'index/fetch' });
   }
   function onModalCancel() {
-    dispatch({ type: 'index/setAddVisible', visible: false })
+    dispatch({ type: 'index/setAddVisible', visible: false });
   }
   const modalProps = {
     visible: addVisible,
     showModal: showModal,
-    onCancel: onModalOk,
-    onOk: onModalCancel,
+    onCancel: onModalCancel,
+    onOk: onModalOk,
   }
   return (
     <div className={styles.container}>

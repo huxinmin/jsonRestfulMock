@@ -8,7 +8,7 @@ const { Option }  = Select;
 export default class Item extends Component {
 	constructor(props){
 		super(props);
-		const { dataType: { main } } = props;
+		const { valType: { main } } = props;
 		let selectedIndex;
 		Types.forEach((item, index) => {
 			if (item.name === main) {
@@ -24,38 +24,37 @@ export default class Item extends Component {
 		this.setState({
 			selectedIndex: parseInt(option.key, 10)
 		});
-		const { path } = this.props;
-		this.props.handleChange(path, 'dataType', { main: val, children: null });
+		this.props.handleChange('valType', { main: val, child: null });
 	}
 
 	handleChangeChildren = (val) => {
-		const { dataType, path } = this.props;
-		this.props.handleChange(path, 'dataType', Object.assign(dataType, { children: val }));
+		const { valType } = this.props;
+		this.props.handleChange('valType', Object.assign(valType, { child: val }));
 	}
 
 	renderChildren() {
-		const { dataType } = this.props;
+		const { valType } = this.props;
 		const { selectedIndex } = this.state;
-		return ( 
-			<Select value={dataType.children} onChange={this.handleChangeChildren}>
+		return (
+			<Select value={valType.child} onChange={this.handleChangeChildren} style={{ width: '200px', float: 'right' }}>
 				{
-						Types[selectedIndex].children.map((item, index) => <Option key={index} value={item.name}>{item.cname}</Option>)
+					Types[selectedIndex].children.map((item, index) => <Option key={index} value={item.name}>{item.cname}</Option>)
 				}
 			</Select>
 		)
 	}
 
 	renderMinMax() {
-		const { min, max, path } = this.props;
+		const { min, max } = this.props;
 		return (
 			<div className='min-and-max'>
-				<div>
+				<div style={{ display: 'inline-block', marginTop: '10px' }}>
 					<span>最小值</span>
-					<InputNumber value={min} onChange={ this.props.handleChange.bind(null, path, 'min') }/> 
+					<InputNumber value={min} onChange={ this.props.handleChange.bind(null, 'min') }/>
 				</div>
-				<div>
+				<div style={{ display: 'inline-block', marginTop: '10px', marginLeft: '10px' }}>
 					<span>最大值</span>
-					<InputNumber value={max} onChange={ this.props.handleChange.bind(null, path, 'max') }/> 
+					<InputNumber value={max} onChange={ this.props.handleChange.bind(null, 'max') }/>
 				</div>
 			</div>
 		)
@@ -63,31 +62,29 @@ export default class Item extends Component {
 
 	handeInput = (key, e) => {
 		const value = e.target.value;
-		const { path } = this.props;
-		this.props.handleChange(path, key, value);
+		this.props.handleChange(key, value);
 	}
 
 	render() {
 		const { selectedIndex } = this.state;
-		const { dataType, name, title } = this.props;
+		const { valType, keyName } = this.props;
 		return (
-			<div className='intfa-test-item'>
-				<h5>{title}</h5>
+			<div style={{ margin: '20px 0' }}>
 				<div>
-					<span>字段名</span>
-					<Input placeholder='字段名' value={name} onChange={this.handeInput.bind(null, 'name')} />
+					<h5>字段名</h5>
+					<Input placeholder='字段名' value={keyName} onChange={this.handeInput.bind(null, 'keyName')} />
 				</div>
 				<div>
-				<span>字段类型</span>
-				<Select value={dataType.main} onChange={this.handleChange}>
+				<h5>字段类型</h5>
+				<Select value={valType.main} onChange={this.handleChange} style={{ width: '200px' }}>
 					{
 						Types.map((item, index) => <Option key={index} value={item.name}>{item.cname}</Option>)
 					}
 				</Select>
-				{  
-					selectedIndex !== null && Types[selectedIndex] && Types[selectedIndex].children 
+				{
+					selectedIndex !== null && Types[selectedIndex] && Types[selectedIndex].children
 						?	this.renderChildren()
-						: null 
+						: null
 				}
 				</div>
 				{
@@ -98,5 +95,5 @@ export default class Item extends Component {
 			</div>
 		)
 	}
-	
+
 }

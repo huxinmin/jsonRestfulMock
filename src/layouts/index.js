@@ -3,8 +3,11 @@ import styles from './index.css';
 function BasicLayout(props) {
   return (
     <div className={styles.normal}>
-      <h1 className={styles.title}>json-restful-mock</h1>
+      <header className={styles.header}>
+        <h1>JSONRestfulMock</h1>
+      </header>
       { props.children }
+      <footer className={styles.footer}>json-restful-mock</footer>
     </div>
   );
 }

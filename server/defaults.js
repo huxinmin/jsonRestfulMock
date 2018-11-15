@@ -9,9 +9,7 @@ const objectAssign = require('object-assign')
 const bodyParser = require('./body-parser')
 
 module.exports = function(opts) {
-  const userDir = path.join(process.cwd(), 'public')
-  const defaultDir = path.join(__dirname, '../../dist')
-  const staticDir = fs.existsSync(userDir) ? userDir : defaultDir
+  const staticDir = path.join(__dirname, '../dist')
 
   opts = objectAssign({ logger: true, static: staticDir }, opts)
 

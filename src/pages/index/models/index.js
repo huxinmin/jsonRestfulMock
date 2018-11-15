@@ -2,10 +2,9 @@ import * as indexService from '../services';
 
 export default {
   namespace: 'index',
-  // state: 0,
   state: {
     db: {},
-    addVisible: false
+    addVisible: false,
   },
   reducers: {
     setDb(state, { data }) {
