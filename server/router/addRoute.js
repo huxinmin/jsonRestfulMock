@@ -5,7 +5,6 @@ const singular = require('./singular')
 module.exports = function addRoute(db, router) {
 	const opts = { foreignKeySuffix: 'Id' }
     db.forEach((value, key) => {
-    	console.log(value, key)
     	if (_.isPlainObject(value)) {
       	router.use(`/${key}`, singular(db, key))
       	return

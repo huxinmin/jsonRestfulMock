@@ -10,7 +10,7 @@ function BasicLayout(props) {
         </p>
       </header>
       { props.children }
-      <footer className={styles.footer}>json-restful-mock</footer>
+      <footer className={styles.footer}>JSONRestfulMock <br/>作者：胡新敏</footer>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 const Types = [
-		{ 
-			name: 'text', cname:'文本', 
-			children: [ 
+		{
+			name: 'text', cname:'文本',
+			children: [
 				{ name: 'cparagraph', cname: '中文段落'},
 				{ name: 'csentence', cname: '中文句子' },
 				{ name: 'cword', cname: '中文汉字' },
@@ -13,7 +13,7 @@ const Types = [
 			],
 			min: true,
 			max: true
-		}, 
+		},
 		{ name: 'number', cname: '数值',
 			children: [
 				{ name: 'integer', cname: '整型' },
@@ -22,16 +22,16 @@ const Types = [
 			],
 			min: true,
 			max: true
-		}, 
-		{ name: 'object', cname: 'Map' }, 
-		{ name: 'array', cname: 'List' }, 
+		},
+		{ name: 'object', cname: 'Map' },
+		{ name: 'array', cname: 'List' },
 		{ name: 'date', cname:'日期',
 			children: [
 				{ name: 'date', cname: '日期' },
 				{ name: 'time', cname: '时间' },
 				{ name: 'datetime', cname: '日期时间'}
 			]
-		}, 
+		},
 		{ name: 'web', cname: '网络',
 			children: [
 				{ name: 'url', cname: 'URL' },
@@ -41,13 +41,13 @@ const Types = [
 				{ name: 'email', cname: '邮件地址' },
 				{ name: 'ip', cname: 'IP' }
 			]
-		}, 
+		},
 		{ name: 'image', cname:'图片',
 			children: [
 				{ name: 'image', cname: '图片地址' },
 				{ name: 'dataImage', cname: 'base64图片' }
 			]
-		}, 
+		},
 		{ name: 'boolean', cname:'布尔值'},
 		{ name: 'color', cname:'颜色',
 			children: [

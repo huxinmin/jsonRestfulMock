@@ -21,7 +21,7 @@
 }
 .method {
 	width: 100px;
-	margin-right: 100px;
+	margin-right: 60px;
 	display: inline-block;
 }
 
@@ -29,4 +29,9 @@
 	float: right;
 }
 
-.usage {}
+.usage {
+  margin-top: 40px;
+}
+.mock {
+  margin-top: 40px;
+}

@@ -60,7 +60,7 @@ export default class Add extends Component {
     const { loading, ...res } = this.state;
     return (
       <div style={{ textAlign: 'center', marginTop: '20px' }}>
-        <Button type="primary" onClick={showModal} size='large'>
+        <Button type="primary" onClick={showModal} size='large' style={{ padding: '10px 30px', height: 'auto' }}>
           新增接口
         </Button>
         <Modal title="新增接口" visible={visible} onOk={this.handleOk}
