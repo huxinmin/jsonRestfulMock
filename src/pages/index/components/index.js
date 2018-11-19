@@ -26,7 +26,7 @@ export default ({db, addVisible, dispatch}) => {
         <pre>
           { Object.keys(db).map((item, index) =>
               <p key={index}>
-                <a className={styles.link} href={'/'+item}>/{item}</a>
+                <a className={styles.link} href={window.publicPath+item}>/{item}</a>
                 <span>{ db[item].length ? db[item].length : 1}条数据</span>
               </p>
             )

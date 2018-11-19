@@ -1,9 +1,11 @@
 import axios from 'axios';
 
+const host = window.location.origin + window.publicPath
+
 export function fetch() {
-  return axios.get('http://127.0.0.1:3000/db')
+  return axios.get( host+ 'db')
 }
 
 export function post(data) {
-  return axios.post('http://127.0.0.1:3000/addDB', data)
+  return axios.post(host + 'addDB', data)
 }
